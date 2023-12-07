@@ -48,6 +48,7 @@ namespace lab6SisProg2
         {
             if (!Begin(1))
                 Stop();
+            Clear();
         }
 
         private void Stop()

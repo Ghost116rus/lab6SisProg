@@ -13,7 +13,7 @@ namespace lab6SisProg2
         public int startAddress = 0;
         public int endAddress = 0;
         public int countAddress = 0;
-        public const int memmoryMax = 33554432;
+        public const int memmoryMax = 16777215;
 
 
         public List<List<string>> supportTable = new List<List<string>>();
