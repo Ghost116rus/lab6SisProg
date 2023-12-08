@@ -162,6 +162,12 @@ namespace lab6SisProg2
                     return false;
             }
 
+            if (flagEnd)
+            {
+                MessageBox.Show($"Замечены строки после END.", "Внимание!");
+                return false;
+            }
+
             if (!dC.CheckRow(sourceCode, i, out string mark, out string OC, out string OP1, out string OP2, nameProg))
             {
                 errorText = $"В строке {i + 1} синтаксическая ошибка.";
@@ -206,7 +212,11 @@ namespace lab6SisProg2
 
                 for (int j = 0; j < externalDEFName[0].Count; j++)
                 {
-                    if (externalDEFName[0][j].Contains(mark.ToUpper()) && Equals(currentSectionName.ToUpper(), externalDEFName[1][j].ToUpper()))
+
+                    string[] words = externalDEFName[0][j].Split(' ');
+
+                    bool containsWord = words.Any(word => word.ToUpper() == mark.ToUpper());
+                    if ((containsWord) && (externalDEFName[0][j].Contains(mark.ToUpper()) && Equals(currentSectionName.ToUpper(), externalDEFName[1][j].ToUpper())))
                     {
                         if (externalDEFName[2][j] != "")
                         {
@@ -217,6 +227,7 @@ namespace lab6SisProg2
                             externalDEFName[2][j] = "Used";
                     }
                 }
+
 
                 for (int j = 0; j < symbolTable[0].Count; j++)
                 {

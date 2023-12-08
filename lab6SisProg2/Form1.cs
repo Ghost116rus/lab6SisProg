@@ -25,6 +25,7 @@ namespace lab6SisProg2
         FSPass fsp;
         DataCheck dC;
         int currentRow;
+        private bool _stepByStepPass = false;
 
         //помещаем ТКО в динамический массив
         private string[,] operationCodeArray;
@@ -34,12 +35,14 @@ namespace lab6SisProg2
 
         private void start_Click(object sender, EventArgs e)
         {
+            _stepByStepPass = false;
             if (!Begin(2))
                 Stop();
         }
 
         private void step_Click(object sender, EventArgs e)
         {
+            _stepByStepPass = true;
             if (!Begin(0))
                 Stop();
         }
@@ -89,16 +92,18 @@ namespace lab6SisProg2
                                 return false;
                             }
 
+
+
+                            currentRow++;
+                        }
+                        else
+                        {
                             if (fsp.flagEnd)
                             {
                                 Stop();
                                 return true;
                             }
 
-                            currentRow++;
-                        }
-                        else
-                        {
                             if (!fsp.flagEnd)
                             {
                                 writeError(firstPassErrorTextBox, "Ошибка: Не гайдена директива END");
@@ -276,7 +281,7 @@ namespace lab6SisProg2
                 temp = temp.Where(x => !string.IsNullOrEmpty(x)).ToArray();
                 temp[temp.Length - 1] = temp[temp.Length - 1].Replace("\r", "");
 
-                if (temp[0] == "END" && i + 1 != str.Length)
+                if ((temp[0] == "END" && i + 1 != str.Length) && !(_stepByStepPass))
                 {
                     MessageBox.Show($"Замечены строки после END.", "Внимание!");
                     return false;
