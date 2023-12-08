@@ -162,11 +162,11 @@ namespace lab6SisProg2
                     return false;
             }
 
-            if (flagEnd)
-            {
-                MessageBox.Show($"Замечены строки после END.", "Внимание!");
-                return false;
-            }
+            //if (flagEnd)
+            //{
+            //    MessageBox.Show($"Замечены строки после END.", "Внимание!");
+            //    return false;
+            //}
 
             if (!dC.CheckRow(sourceCode, i, out string mark, out string OC, out string OP1, out string OP2, nameProg))
             {

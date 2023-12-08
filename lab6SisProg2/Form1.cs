@@ -92,18 +92,16 @@ namespace lab6SisProg2
                                 return false;
                             }
 
-
-
-                            currentRow++;
-                        }
-                        else
-                        {
                             if (fsp.flagEnd)
                             {
                                 Stop();
                                 return true;
                             }
 
+                            currentRow++;
+                        }
+                        else
+                        {
                             if (!fsp.flagEnd)
                             {
                                 writeError(firstPassErrorTextBox, "Ошибка: Не гайдена директива END");
@@ -281,11 +279,11 @@ namespace lab6SisProg2
                 temp = temp.Where(x => !string.IsNullOrEmpty(x)).ToArray();
                 temp[temp.Length - 1] = temp[temp.Length - 1].Replace("\r", "");
 
-                if ((temp[0] == "END" && i + 1 != str.Length) && !(_stepByStepPass))
-                {
-                    MessageBox.Show($"Замечены строки после END.", "Внимание!");
-                    return false;
-                }
+                //if ((temp[0] == "END" && i + 1 != str.Length) && !(_stepByStepPass))
+                //{
+                //    MessageBox.Show($"Замечены строки после END.", "Внимание!");
+                //    return false;
+                //}
 
                 if (temp.Length <= 4)
                 {
